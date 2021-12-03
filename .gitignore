@@ -1,0 +1,4 @@
+*.bin
+*.meta
+.info
+Library/
