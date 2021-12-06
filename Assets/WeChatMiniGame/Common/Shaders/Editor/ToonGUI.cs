@@ -514,6 +514,8 @@ namespace WeChat {
             SetKeyword (material, "EnableGradeMap", featherMode.floatValue == 0);
             SetKeyword (material, "USE_LIGHTING", outLineLightMode.floatValue == 1);
             SetKeyword (material, "OUTLINE_VERTEX", outLineMode.floatValue == 1);
+            SetKeyword (material, "USE_NORMALMAP", material.GetTexture ("_NormalMap") != null);
+            
         }
 
         void DoBasic (Material material) {
