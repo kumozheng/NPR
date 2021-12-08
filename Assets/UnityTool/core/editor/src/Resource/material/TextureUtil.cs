@@ -69,12 +69,12 @@ namespace WeChat {
 
         public static EnumTexFileExt ResolveFileExt (TextureFormat format) {
             switch (format) {
-                case TextureFormat.ASTC_RGB_10x10:
-                case TextureFormat.ASTC_RGB_12x12:
-                case TextureFormat.ASTC_RGB_4x4:
-                case TextureFormat.ASTC_RGB_5x5:
-                case TextureFormat.ASTC_RGB_6x6:
-                case TextureFormat.ASTC_RGB_8x8:
+                // case TextureFormat.ASTC_10x10:
+                // case TextureFormat.ASTC_12x12:
+                // case TextureFormat.ASTC_4x4:
+                // case TextureFormat.ASTC_5x5:
+                // case TextureFormat.ASTC_6x6:
+                // case TextureFormat.ASTC_8x8:
                 case TextureFormat.ETC2_RGB:
                 case TextureFormat.ETC_RGB4:
 #if UNITY_2017_1_OR_NEWER
@@ -167,18 +167,12 @@ namespace WeChat {
                     return 0;
                 case TextureFormat.ETC2_RGBA8:
                     return 2;
-                case TextureFormat.ASTC_RGB_4x4:
-                case TextureFormat.ASTC_RGB_5x5:
-                case TextureFormat.ASTC_RGB_6x6:
-                case TextureFormat.ASTC_RGB_8x8:
-                case TextureFormat.ASTC_RGB_10x10:
-                case TextureFormat.ASTC_RGB_12x12:
-                case TextureFormat.ASTC_RGBA_4x4:
-                case TextureFormat.ASTC_RGBA_5x5:
-                case TextureFormat.ASTC_RGBA_6x6:
-                case TextureFormat.ASTC_RGBA_8x8:
-                case TextureFormat.ASTC_RGBA_10x10:
-                case TextureFormat.ASTC_RGBA_12x12:
+                // case TextureFormat.ASTC_4x4:
+                // case TextureFormat.ASTC_5x5:
+                // case TextureFormat.ASTC_6x6:
+                // case TextureFormat.ASTC_8x8:
+                // case TextureFormat.ASTC_10x10:
+                // case TextureFormat.ASTC_12x12:
                 case TextureFormat.ETC_RGB4_3DS:
                 case TextureFormat.ETC_RGBA8_3DS:
 #if UNITY_2017_1_OR_NEWER

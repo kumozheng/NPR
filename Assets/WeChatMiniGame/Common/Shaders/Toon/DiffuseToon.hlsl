@@ -1,7 +1,7 @@
     //=============================================BaseColor======================================================================//
     // layer0
     fixed4 baseMap = tex2D(_BaseMap, i.uv);
-    fixed alpha = GetAlpha(baseMap, _BaseColor, _Cutoff);
+    fixed alpha = GetAlpha(baseMap.a, _BaseColor, _Cutoff);
     float3 shadeColorLayer0  = baseMap.rgb * _BaseColor.rgb;
     shadeColorLayer0 = shadeColorLayer0 * lightColor;
     // layer1

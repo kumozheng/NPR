@@ -9,10 +9,10 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: face
   m_Shader: {fileID: 4800000, guid: ebb1ecddc28a8441d916877791bfad95, type: 3}
-  m_ShaderKeywords: EnableFog EnableRimLight USE_LIGHTING _ _ALPHABLEND_OFF _ALPHATEST_OFF
-    _EMISSIVE_SIMPLE _FEATHERMODE_DOUBLESHADE _IS_1ST_SHADECOLORONLY_ON _IS_BLENDADDTOMATCAP_ON
-    _LIGHTDIRECTION_MASKON_ON _OUTLINE_LIGHTING _OUTLINE_MODE_NORMAL _OUTLINE_NML
-    _RIMLIGHT_ON _SETSYSTEMSHADOWSTOBASE_ON
+  m_ShaderKeywords: EnableFog EnableHighLight EnableRimLight USE_LIGHTING _ALPHABLEND_OFF
+    _ALPHATEST_OFF _FEATHERMODE_DOUBLESHADE _HIGHLIGHT_ON _IS_1ST_SHADECOLORONLY_ON
+    _IS_BLENDADDTOMATCAP_ON _IS_SPECULARTOHIGHCOLOR_ON _LIGHTDIRECTION_MASKON_ON _OUTLINE_LIGHTING
+    _OUTLINE_MODE_NORMAL _RIMLIGHT_ON _SETSYSTEMSHADOWSTOBASE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -123,11 +123,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _1st2nd_Shades_Feather: 0.161
+    - _1st2nd_Shades_Feather: 0.055
     - _1st_ShadeColor_Feather: 0.0001
     - _1st_ShadeColor_Step: 0.5
     - _2nd_ShadeColor_Feather: 0.0001
-    - _2nd_ShadeColor_Step: 0
+    - _2nd_ShadeColor_Step: 0.003
     - _ARTex_AlphaOn: 0
     - _AR_OffsetU: 0
     - _AR_OffsetV: 0.3
@@ -137,8 +137,8 @@ Material:
     - _AngelRing: 0
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.5
-    - _BaseColor_Step: 0.577
-    - _BaseShade_Feather: 0.485
+    - _BaseColor_Step: 0.368
+    - _BaseShade_Feather: 0.136
     - _Base_Speed: 0
     - _BlurLevelMatcap: 0
     - _BumpScale: 1
@@ -156,10 +156,11 @@ Material:
     - _FeatherMode: 1
     - _Fog: 0
     - _GI_Intensity: 0
-    - _HighColor_Power: 0
-    - _HighLight: 0
+    - _HighColor_Power: 0.483
+    - _HighLight: 1
     - _Inverse_MatcapMask: 0
     - _Inverse_Z_Axis_BLD: 1
+    - _IsLightRimLight: 0
     - _Is_1st_ShadeColorOnly: 1
     - _Is_BLD: 0
     - _Is_BakedNormal: 0
@@ -184,9 +185,9 @@ Material:
     - _Is_Ortho: 0
     - _Is_OutlineTex: 0
     - _Is_PingPong_Base: 0
-    - _Is_SpecularToHighColor: 0
+    - _Is_SpecularToHighColor: 1
     - _Is_UseTweakHighColorOnShadow: 0
-    - _Is_UseTweakMatCapOnShadow: 0
+    - _Is_UseTweakMatCapOnShadow: 1
     - _Is_ViewCoord_Scroll: 0
     - _Is_ViewShift: 0
     - _LightDirection_MaskOn: 1
@@ -197,29 +198,29 @@ Material:
     - _OUTLINE_MODE: 0
     - _Offset_X_Axis_BLD: -0.05
     - _Offset_Y_Axis_BLD: 0.09
-    - _Offset_Z: 0
-    - _Outline_Width: 0.314
+    - _Offset_Z: 0.1
+    - _Outline_Width: 0.25
     - _RenderQueue: 2000
     - _RimLight: 1
     - _RimLight_FeatherOff: 0
     - _RimLight_InsideMask: 0.097
     - _RimLight_Power: 0.796
     - _Rotate_EmissiveUV: 0
-    - _Rotate_MatCapUV: 0
+    - _Rotate_MatCapUV: 0.072
     - _Rotate_NormalMapForMatCapUV: 0
     - _Scroll_EmissiveU: 0
     - _Scroll_EmissiveV: 0
     - _SetSystemShadowsToBase: 1
     - _Set_SystemShadowsToBase: 1
-    - _ShadeColor_Step: 0.251
+    - _ShadeColor_Step: 0.1
     - _SrcBlend: 1
     - _StepOffset: 0
     - _TweakHighColorOnShadow: 0
     - _TweakMatCapOnShadow: 0
     - _TweakSystemShadowsLevel: 0
-    - _Tweak_HighColorMaskLevel: 0
+    - _Tweak_HighColorMaskLevel: -0.739
     - _Tweak_LightDirection_MaskLevel: 0
-    - _Tweak_MatCapUV: 0
+    - _Tweak_MatCapUV: -0.145
     - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: -0.635
     - _Tweak_ShadingGradeMapLevel: 0
@@ -233,18 +234,18 @@ Material:
     - _utsTechnique: 0
     - _utsVersion: 2.08
     m_Colors:
-    - _1st_ShadeColor: {r: 0.93333334, g: 0.8784314, b: 0.9019608, a: 1}
-    - _2nd_ShadeColor: {r: 0.8862745, g: 0.7647059, b: 0.7647059, a: 1}
+    - _1st_ShadeColor: {r: 0.9245283, g: 0.721079, b: 0.44045925, a: 1}
+    - _2nd_ShadeColor: {r: 0.9716981, g: 0.27959237, b: 0.2992544, a: 1}
     - _AngelRingColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Ap_RimLightColor: {r: 0.99215686, g: 0.85490197, b: 1, a: 1}
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Ap_RimLightColor: {r: 0.9906664, g: 0.8537736, b: 1, a: 1}
+    - _BaseColor: {r: 1, g: 0.8869108, b: 0.7294118, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
-    - _HighColor: {r: 0, g: 0, b: 0, a: 1}
+    - _HighColor: {r: 1, g: 0, b: 0, a: 1}
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Outline_Color: {r: 0.6509804, g: 0.5, b: 0.5, a: 1}
-    - _RimLightColor: {r: 1, g: 0.4392157, b: 0.67058825, a: 1}
+    - _Outline_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _RimLightColor: {r: 1, g: 0.43867922, b: 0.66867936, a: 1}
     - _ShadowColor: {r: 0.8, g: 0.8, b: 1, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}

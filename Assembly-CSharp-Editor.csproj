@@ -204,6 +204,7 @@
      <Compile Include="Assets\UnityTool\core\editor\src\Resource\material\WXEngineShurikenParticleParser.cs" />
      <Compile Include="Assets\UnityTool\core\editor\src\Resource\material\WXEngineSkyBoxParser.cs" />
      <Compile Include="Assets\UnityTool\core\editor\src\Resource\material\WXEngineStandardLitParser.cs" />
+     <Compile Include="Assets\UnityTool\core\editor\src\Resource\material\WXEngineToonNoOutlineParser.cs" />
      <Compile Include="Assets\UnityTool\core\editor\src\Resource\material\WXEngineToonParser.cs" />
      <Compile Include="Assets\UnityTool\core\editor\src\Resource\material\WXEngineTrailParser.cs" />
      <Compile Include="Assets\UnityTool\core\editor\src\Resource\WXEngineAnimationClip.cs" />

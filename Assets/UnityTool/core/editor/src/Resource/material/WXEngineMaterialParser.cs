@@ -19,6 +19,7 @@ namespace WeChat
             WXMaterial.registerParser("WXBBShader/ShurikenParticle", new WXShurikenParticleParser());
             WXMaterial.registerParser("WXBBShader/StandardLit", new WXStandardLitParser());
             WXMaterial.registerParser("WXBBShader/Toon", new WXToonParser());
+            WXMaterial.registerParser("WXBBShader/ToonNoOutline", new WXEngineToonNoOutlineParser());
 			WXMaterial.registerParser("WXBBShader/Skybox", new WXSkyBoxParser());
         }
 

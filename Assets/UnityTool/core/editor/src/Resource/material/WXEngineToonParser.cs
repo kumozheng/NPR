@@ -57,6 +57,8 @@ namespace WeChat {
                 AddShaderParam ("_HighColor", material.GetColor ("_HighColor"), true);
                 AddShaderParam ("_HighColor_Power", material.GetFloat ("_HighColor_Power"));
                 AddTexture ("_HighColorMask", "_HighColorMask");
+                AddShaderParam ("_Is_SpecularToHighColor", material.GetFloat ("_Is_SpecularToHighColor"));
+                AddShaderParam ("_Is_SpecularToHighColor", material.GetFloat ("_Is_SpecularToHighColor"));
                 AddShaderParam ("_Tweak_HighColorMaskLevel", material.GetFloat ("_Tweak_HighColorMaskLevel"));
                 AddShaderParam ("_TweakHighColorOnShadow", material.GetFloat ("_TweakHighColorOnShadow"));
             }
@@ -68,6 +70,7 @@ namespace WeChat {
                 AddShaderParam ("_RimLight_Power", material.GetFloat ("_RimLight_Power"));
                 AddShaderParam ("_RimLight_InsideMask", material.GetFloat ("_RimLight_InsideMask"));
                 AddShaderParam ("_LightDirection_MaskOn", material.GetFloat ("_LightDirection_MaskOn"));
+                AddShaderParam ("_IsLightRimLight", material.GetFloat ("_IsLightRimLight"));
                 AddShaderParam ("_Tweak_LightDirection_MaskLevel", material.GetFloat ("_Tweak_LightDirection_MaskLevel"));
                 AddTexture ("_Set_RimLightMask", "_Set_RimLightMask");
                 AddShaderParam ("_Ap_RimLightColor", material.GetColor ("_Ap_RimLightColor"), true);
@@ -80,13 +83,17 @@ namespace WeChat {
                 AddShaderDefination ("EnableMatCap", true);
                 AddTexture ("_MatCapTex", "_MatCapTex");
                 AddShaderParam ("_MatCapColor", material.GetColor ("_MatCapColor"), true);
-                AddShaderParam ("_Is_BlendAddToMatCap", material.GetFloat ("_Is_BlendAddToMatCap"));
+                // AddShaderParam ("_Is_BlendAddToMatCap", material.GetFloat ("_Is_BlendAddToMatCap"));
                 AddShaderParam ("_Rotate_MatCapUV", material.GetFloat ("_Rotate_MatCapUV"));
                 AddShaderParam ("_Tweak_MatCapUV", material.GetFloat ("_Tweak_MatCapUV"));
-                AddShaderParam ("_Is_NormalMapForMatCap", material.GetFloat ("_Is_NormalMapForMatCap"));
-                AddTexture ("_NormalMapForMatCap", "_NormalMapForMatCap");
-                AddShaderParam ("_Rotate_NormalMapForMatCapUV", material.GetFloat ("_Rotate_NormalMapForMatCapUV"));
                 AddShaderParam ("_TweakMatCapOnShadow", material.GetFloat ("_TweakMatCapOnShadow"));
+                AddShaderParam ("_Is_UseTweakMatCapOnShadow", material.GetFloat ("_Is_UseTweakMatCapOnShadow"));
+                AddTexture ("_MatCapMask", "_MatCapMask");
+                AddShaderParam ("_Tweak_MatcapMaskLevel", material.GetFloat ("_Tweak_MatcapMaskLevel"));
+
+                // AddShaderParam ("_Is_NormalMapForMatCap", material.GetFloat ("_Is_NormalMapForMatCap"));
+                // AddTexture ("_NormalMapForMatCap", "_NormalMapForMatCap");
+                // AddShaderParam ("_Rotate_NormalMapForMatCapUV", material.GetFloat ("_Rotate_NormalMapForMatCapUV"));
             }
             // AngleRing
             bool enableAngleRing = (double)material.GetFloat ("_AngelRing") == 1.0;

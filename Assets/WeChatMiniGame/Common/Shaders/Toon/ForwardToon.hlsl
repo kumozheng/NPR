@@ -58,6 +58,7 @@
     uniform float _RimLight_Power;
     uniform float _RimLight_InsideMask;
     uniform float _LightDirection_MaskOn;
+    uniform float _IsLightRimLight;
     uniform float _Tweak_LightDirection_MaskLevel;
     uniform float4 _Ap_RimLightColor;
     uniform float _Ap_RimLight_Power;
@@ -161,7 +162,6 @@
     }
     
     fixed4 frag(v2f i) : SV_Target {
-
         fixed3 normalWS = GetNormalWS(i);
         float3 viewDirWS = normalize(_WorldSpaceCameraPos.xyz - i.positionWS.xyz);
         float3 lightColor = _LightColor0.xyz;
@@ -174,6 +174,7 @@
         float halfLambertWithShadow = halfLambert * saturate(shadowAtten * 0.5 + 0.5 + _TweakSystemShadowsLevel);
 
         #include "./DiffuseToon.hlsl"
+        return float4(color , 1.0);
 
         //=============================================HighColor======================================================================//
     #if defined (EnableHighLight)
@@ -204,7 +205,7 @@
         //=============================================Final Composition=============================================================//
         color = saturate(color) + (bakedGI * envIntensity * _GI_Intensity * smoothstep(1, 0, envIntensity / 2)) + emission;
 
-        fixed4 finalColor = fixed4(color , 1.0);
+        fixed4 finalColor = fixed4(color , alpha);
         
         UNITY_APPLY_FOG(i.fogCoord, finalColor);
        

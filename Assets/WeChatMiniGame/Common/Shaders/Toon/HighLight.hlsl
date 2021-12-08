@@ -17,3 +17,4 @@
     // color = saturate(color  - tweakHighColorMask) + tweakHiColor;
     // color = saturate(color  - tweakHighColorMask) + highColor;
     color = saturate(color + highColor);
+    // color = float3(specularNoExp,specularNoExp,specularNoExp);

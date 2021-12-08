@@ -142,9 +142,9 @@ namespace WeChat {
         MaterialProperty highLight = null;
         MaterialProperty highColor = null;
         MaterialProperty highColorMap = null;
-        MaterialProperty isSpecularHighLight = null;
         MaterialProperty highColorPower = null;
         MaterialProperty highColorMask = null;
+        MaterialProperty isSpecularToHighColor = null;
         MaterialProperty tweakHighColorMaskLevel = null;
         MaterialProperty tweakHighColorOnShadow = null;
 
@@ -155,6 +155,7 @@ namespace WeChat {
         MaterialProperty rimLightPower = null;
         MaterialProperty rimLightInsideMask = null;
         MaterialProperty lightDirection_MaskOn = null;
+        MaterialProperty isLightRimLight = null;
         MaterialProperty tweakLightDirectionMaskLevel = null;
         MaterialProperty rimLightColor_AP = null;
         MaterialProperty rimLightPower_AP = null;
@@ -175,10 +176,17 @@ namespace WeChat {
         MaterialProperty matcap = null;
         MaterialProperty matcapTex = null;
         MaterialProperty matcapColor = null;
-        MaterialProperty isUseTweakMatCapOnShadow = null;
+        // MaterialProperty isBlendAddToMatcap = null;
         MaterialProperty rotateMatcapUV = null;
         MaterialProperty tweakMatcapUV = null;
+        // MaterialProperty is_NormalMapForMatCap = null;
+        // MaterialProperty normalMapForMatcap = null;
+        // MaterialProperty rotateNormalMapForMatcapUV = null;
+        MaterialProperty isUseTweakMatCapOnShadow = null;
         MaterialProperty tweakMatcapOnShadow = null;
+        MaterialProperty matCapMask = null;
+        MaterialProperty tweakMatcapMaskLevel = null;
+
 
         // Emission
         static bool _Emission_GI_Foldout = true;
@@ -201,7 +209,7 @@ namespace WeChat {
         bool m_FirstTimeApply = true;
         static bool _RenderState_Foldout = true;
 
-        public void FindProperties (MaterialProperty[] props) {
+        public void FindProperties (MaterialProperty[] props, Material material) {
 
             fog = FindProperty ("_Fog", props);
             renderMode = FindProperty ("_Mode", props);
@@ -251,9 +259,9 @@ namespace WeChat {
             highLight = FindProperty ("_HighLight", props, false);
             highColor = FindProperty ("_HighColor", props, false);
             highColorMap = FindProperty ("_HighColor_Tex", props, false);
-            isSpecularHighLight = FindProperty ("_Is_SpecularToHighColor", props, false);
-            highColorPower = FindProperty ("_HighColor_Power", props, false);   
+            highColorPower = FindProperty ("_HighColor_Power", props, false);
             highColorMask = FindProperty ("_HighColorMask", props, false);
+            isSpecularToHighColor = FindProperty ("_Is_SpecularToHighColor", props, false);
             tweakHighColorMaskLevel = FindProperty ("_Tweak_HighColorMaskLevel", props, false);
             tweakHighColorOnShadow = FindProperty ("_TweakHighColorOnShadow", props, false);
 
@@ -263,6 +271,7 @@ namespace WeChat {
             rimLightPower = FindProperty ("_RimLight_Power", props, false);
             rimLightInsideMask = FindProperty ("_RimLight_InsideMask", props, false);
             lightDirection_MaskOn = FindProperty ("_LightDirection_MaskOn", props, false);
+            isLightRimLight = FindProperty ("_IsLightRimLight", props, false);
             tweakLightDirectionMaskLevel = FindProperty ("_Tweak_LightDirection_MaskLevel", props, false);
             rimLightColor_AP = FindProperty ("_Ap_RimLightColor", props, false);
             rimLightPower_AP = FindProperty ("_Ap_RimLight_Power", props, false);
@@ -281,10 +290,16 @@ namespace WeChat {
             matcap = FindProperty ("_MatCap", props, false);
             matcapTex = FindProperty ("_MatCapTex", props, false);
             matcapColor = FindProperty ("_MatCapColor", props, false);
+            // isBlendAddToMatcap = FindProperty ("_Is_BlendAddToMatCap", props, false);
             rotateMatcapUV = FindProperty ("_Rotate_MatCapUV", props, false);
             tweakMatcapUV = FindProperty ("_Tweak_MatCapUV", props, false);
-            tweakMatcapOnShadow = FindProperty ("_TweakMatCapOnShadow", props, false);
+            // is_NormalMapForMatCap = FindProperty ("_Is_NormalMapForMatCap", props, false);
+            // normalMapForMatcap = FindProperty ("_NormalMapForMatCap", props, false);
+            // rotateNormalMapForMatcapUV = FindProperty ("_Rotate_NormalMapForMatCapUV", props, false);
             isUseTweakMatCapOnShadow = FindProperty ("_Is_UseTweakMatCapOnShadow", props, false);
+            tweakMatcapOnShadow = FindProperty ("_TweakMatCapOnShadow", props, false);
+            matCapMask = FindProperty ("_MatCapMask", props, false);
+            tweakMatcapMaskLevel = FindProperty ("_Tweak_MatcapMaskLevel", props, false);
 
             // Emissive & GI
             emissiveTex = FindProperty ("_EmissiveTex", props, false);
@@ -292,20 +307,24 @@ namespace WeChat {
             GI_Intensity = FindProperty ("_GI_Intensity", props, false);
 
             // Outline
-            outLineLightMode = FindProperty ("_OUTLINE", props, false);
-            outLineMode = FindProperty ("_OUTLINE_MODE", props, false);
-            outline_Width = FindProperty ("_Outline_Width", props, false);
-            outline_Color = FindProperty ("_Outline_Color", props, false);
-            farthest_Distance = FindProperty ("_Farthest_Distance", props, false);
-            nearest_Distance = FindProperty ("_Nearest_Distance", props, false);
-            offset_Z = FindProperty ("_Offset_Z", props, false);
+            if(material.HasProperty("_OUTLINE")){
+                outLineLightMode = FindProperty ("_OUTLINE", props, false);
+                outLineMode = FindProperty ("_OUTLINE_MODE", props, false);
+                outline_Width = FindProperty ("_Outline_Width", props, false);
+                outline_Color = FindProperty ("_Outline_Color", props, false);
+                farthest_Distance = FindProperty ("_Farthest_Distance", props, false);
+                nearest_Distance = FindProperty ("_Nearest_Distance", props, false);
+                offset_Z = FindProperty ("_Offset_Z", props, false);
+            }
+            
         }
 
         public override void OnGUI (MaterialEditor materialEditor, MaterialProperty[] props) {
             // render the default gui
-            FindProperties (props);
             m_MaterialEditor = materialEditor;
             Material material = m_MaterialEditor.target as Material;
+            FindProperties (props, material);
+
 
             if (m_FirstTimeApply) {
                 onChangeRender (material, (RenderMode) material.GetFloat ("_Mode"));
@@ -330,14 +349,16 @@ namespace WeChat {
                 // Rim Light
                 DoRimLight(material);
 
-                // Angle Ring
-                DoAngleRing(material);
-
                 // MatCap
                 DoMatcap(material);
 
+                // Angle Ring
+                DoAngleRing(material);
+
                 // Outline
-                DoOutline(material);
+                if(material.HasProperty("_OUTLINE")){
+                    DoOutline(material);
+                }
 
                 // Emissive & GI
                 DoEmissionGI(material);
@@ -512,10 +533,10 @@ namespace WeChat {
             SetKeyword (material, "EnableAngleRing", angleRing.floatValue == 1);
             SetKeyword (material, "EnableMatCap", matcap.floatValue == 1);
             SetKeyword (material, "EnableGradeMap", featherMode.floatValue == 0);
-            SetKeyword (material, "USE_LIGHTING", outLineLightMode.floatValue == 1);
-            SetKeyword (material, "OUTLINE_VERTEX", outLineMode.floatValue == 1);
-            SetKeyword (material, "USE_NORMALMAP", material.GetTexture ("_NormalMap") != null);
-            
+            if(material.HasProperty("_OUTLINE")){
+                SetKeyword (material, "USE_LIGHTING", outLineLightMode.floatValue == 1);
+                SetKeyword (material, "OUTLINE_VERTEX", outLineMode.floatValue == 1);
+            }
         }
 
         void DoBasic (Material material) {
@@ -589,8 +610,8 @@ namespace WeChat {
                 if(highLight.floatValue == 1){
                     m_MaterialEditor.TexturePropertySingleLine (new GUIContent("HighColor", "HighColor"), highColorMap, highColor);
                     m_MaterialEditor.TexturePropertySingleLine (new GUIContent("HighColorMask", "HighColorMask"), highColorMask, null);
-                    m_MaterialEditor.ShaderProperty (isSpecularHighLight, "Is Specular HighLight");
                     m_MaterialEditor.ShaderProperty (highColorPower, "HighColor Power");
+                    m_MaterialEditor.ShaderProperty (isSpecularToHighColor, "Is Specular To HighColor");
                     m_MaterialEditor.ShaderProperty (tweakHighColorOnShadow, "Tweak HighColor On Shadow");
                     m_MaterialEditor.ShaderProperty (tweakHighColorMaskLevel, "Tweak HighColor Mask Level");
                 }
@@ -610,6 +631,7 @@ namespace WeChat {
                     m_MaterialEditor.ShaderProperty (rimLightPower, "RimLight Power");
                     m_MaterialEditor.ShaderProperty (rimLightInsideMask, "RimLight Inside Mask");
                     m_MaterialEditor.ShaderProperty (lightDirection_MaskOn, "Tweak Light Direction Mask On");
+                    m_MaterialEditor.ShaderProperty (isLightRimLight, "Is Light RimColor");
                     m_MaterialEditor.ShaderProperty (tweakLightDirectionMaskLevel, "Tweak Light Direction Mask Level");
                     m_MaterialEditor.ShaderProperty (rimLightColor_AP, "AntiPodean RimLight Color");
                     m_MaterialEditor.ShaderProperty (rimLightPower_AP, "AntiPodean RimLight Power");
@@ -646,12 +668,18 @@ namespace WeChat {
                 m_MaterialEditor.ShaderProperty (matcap, "MatCap");
                 if(matcap.floatValue == 1){
                     m_MaterialEditor.TexturePropertySingleLine (new GUIContent("MatCap Color", "MatCap Color"), matcapTex, matcapColor);
+                    // m_MaterialEditor.ShaderProperty (isBlendAddToMatcap, "Is BlendAdd To Matcap");
                     m_MaterialEditor.ShaderProperty (rotateMatcapUV, "Rotate MatCap UV");
                     m_MaterialEditor.ShaderProperty (tweakMatcapUV, "Scale MatCap UV");
-                    m_MaterialEditor.ShaderProperty (isUseTweakMatCapOnShadow, "Use MatCap On Shadow");
-                    if(isUseTweakMatCapOnShadow.floatValue == 1){
-                        m_MaterialEditor.ShaderProperty (tweakMatcapOnShadow, "Tweak MatCap On Shadow");
-                    }
+                    // m_MaterialEditor.ShaderProperty (is_NormalMapForMatCap, "Is NormalMap For MatCap");
+                    // m_MaterialEditor.ShaderProperty (normalMapForMatcap, "NormalMap For MatCap");
+                    // m_MaterialEditor.ShaderProperty (rotateNormalMapForMatcapUV, "Rotate NormalMap For MatCap UV");
+
+                    m_MaterialEditor.ShaderProperty (isUseTweakMatCapOnShadow, "Is Use Tweak MatCap On Shadow");
+                    m_MaterialEditor.ShaderProperty (tweakMatcapOnShadow, "Tweak MatCap On Shadow");
+
+                     m_MaterialEditor.TexturePropertySingleLine (new GUIContent("MatCap Mask", "MatCap Mask"), matCapMask, null);
+                    m_MaterialEditor.ShaderProperty (tweakMatcapMaskLevel, "Tweak MatCap Mask Level");
                 }
                 EditorGUI.indentLevel--;
             }

@@ -17,6 +17,7 @@ namespace WeChat
             {"@system/blinnPhongNew", "c7fb21R-abb109E-a8e91bS-54b4baR"},
             {"@system/standardLit", "44e0e0R-db917aE-769d71S-5eff01R"},
             {"@system/Toon", "12a595R-8aea83E-2b6e41S-26697fR"},
+            {"@system/ToonNoOutline", "65b2f68b4b4804eda9f34dc75546b6dc"},
             {"@system/blit", "998444R-4e8cd1E-52b60bS-d1c239R"},
             {"@system/bloom", "405eabR-ca288aE-5bf4f3S-3b3bd3R"},
             {"@system/effect3d", "f75b6eR-26db4aE-74d251S-b121f3R"},

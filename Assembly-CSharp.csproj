@@ -56,6 +56,7 @@
      <Compile Include="Assets\Common\GlobalConfig.cs" />
      <Compile Include="Assets\ImageEffects\Scripts\PostEffectsBase.cs" />
      <Compile Include="Assets\ImageEffects\Scripts\ScreenOverlay.cs" />
+     <Compile Include="Assets\logic\main.cs" />
      <Compile Include="Assets\PostProcessing\FocusPullerHelper.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
@@ -215,6 +216,7 @@
      <None Include="Assets\WeChatMiniGame\Common\Shaders\ForwardLit\lit.hlsl" />
      <None Include="Assets\UnityChanTPK\Toon\Shader\Toon_ShadingGradeMap_TransClipping_StencilOut.shader" />
      <None Include="Assets\UnityChan\CandyRockStar\Shader\Unitychan_chara_fuku.shader" />
+     <None Include="Assets\WeChatMiniGame\Common\Shaders\ToonNoOutline.shader" />
      <None Include="Assets\UnityChanTPK\Toon\Shader\Tess\UCTS_Tess.cginc" />
      <None Include="Assets\UnityChanTPK\Toon\Shader\Tess\ToonColor_ShadingGradeMap_AngelRing_TransClipping_Tess_StencilOut.shader" />
      <None Include="Assets\UnityChanTPK\Toon\Shader\ToonColor_ShadingGradeMap_StencilOut.shader" />
@@ -234,6 +236,7 @@
      <None Include="Assets\UnityChanTPK\Toon\Shader\Tess\Toon_DoubleShadeWithFeather_Tess.shader" />
      <None Include="Assets\UnityChanTPK\Toon\Shader\Tess\Toon_DoubleShadeWithFeather_TransClipping_Tess.shader" />
      <None Include="Assets\WeChatMiniGame\Common\Shaders\ForwardLit\input.hlsl" />
+     <None Include="Assets\WeChatMiniGame\Common\Shaders\Toon\CelForward.hlsl" />
      <None Include="Assets\UnityChanTPK\Toon\Shader\ToonColor_ShadingGradeMap_TransClipping_StencilOut.shader" />
      <None Include="Assets\UnityChanTPK\Toon\Shader\Tess\UCTS_DoubleShadeWithFeather_tess.cginc" />
      <None Include="Assets\WeChatMiniGame\Common\Shaders\PostProcess\Bloom.shader" />
