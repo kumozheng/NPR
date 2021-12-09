@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: hair
   m_Shader: {fileID: 4800000, guid: 44dacb0125e5149f8b62a47481c38da3, type: 3}
-  m_ShaderKeywords: EnableFog EnableMatCap EnableRimLight OUTLINE_VERTEX USE_NORMALMAP
+  m_ShaderKeywords: EnableFog EnableMatCap EnableRimLight OUTLINE_NORMAL_IN_COLOR USE_NORMALMAP
     _ALPHABLEND_OFF _ALPHATEST_OFF _FEATHERMODE_DOUBLESHADE _IS_1ST_SHADECOLORONLY_ON
     _IS_BLENDADDTOMATCAP_ON _IS_LIGHTCOLOR_1ST_SHADE_ON _IS_LIGHTCOLOR_2ND_SHADE_ON
     _IS_LIGHTCOLOR_AP_RIMLIGHT_ON _IS_LIGHTCOLOR_BASE_ON _IS_LIGHTCOLOR_HIGHCOLOR_ON
@@ -190,7 +190,7 @@ Material:
     - _Mode: 0
     - _Nearest_Distance: 1
     - _OUTLINE: 0
-    - _OUTLINE_MODE: 1
+    - _OUTLINE_NORMAL_ATTRIBUTE: 1
     - _Offset_Z: 0
     - _Outline_Width: 0
     - _RenderQueue: 2000

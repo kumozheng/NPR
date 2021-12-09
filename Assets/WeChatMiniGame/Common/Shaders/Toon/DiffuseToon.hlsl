@@ -22,7 +22,7 @@
         // blend layer 0-1-2
         float shadowMask = saturate(1.0 + (_1st_ShadeColor_Step - _1st_ShadeColor_Feather - shadingGrade ) / _1st_ShadeColor_Feather); 
         float3 blendLayer_01 = lerp(shadeColorLayer0, shadeColorLayer1, shadowMask);
-        
+
         float blendFactor_12 = saturate(1.0 + (_2nd_ShadeColor_Step - _2nd_ShadeColor_Feather - shadingGrade) / _2nd_ShadeColor_Feather); 
         float3 blendLayer_12 = lerp(shadeColorLayer1, shadeColorLayer2, blendFactor_12);
         

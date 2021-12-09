@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cae96c3a6951f51cc0be5cd33432074, type: 3}
   m_Name: beefball
   m_EditorClassIdentifier: 
-  storagePath: 
+  storagePath: /Users/kumo/Desktop/Export/
   exportPath: 

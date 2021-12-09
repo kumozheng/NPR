@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: body
   m_Shader: {fileID: 4800000, guid: 88032cc1c27874590ac152d77f273cf9, type: 3}
-  m_ShaderKeywords: EnableFog EnableHighLight EnableRimLight OUTLINE_VERTEX USE_LIGHTING
+  m_ShaderKeywords: EnableFog EnableHighLight EnableRimLight OUTLINE_NORMAL_IN_COLOR USE_LIGHTING
     _ALPHABLEND_OFF _ALPHATEST_OFF _FEATHERMODE_DOUBLESHADE _HIGHLIGHT_ON _IS_1ST_SHADECOLORONLY_ON
     _IS_BLENDADDTOMATCAP_ON _IS_LIGHTCOLOR_1ST_SHADE_ON _IS_LIGHTCOLOR_2ND_SHADE_ON
     _IS_LIGHTCOLOR_AP_RIMLIGHT_ON _IS_LIGHTCOLOR_BASE_ON _IS_LIGHTCOLOR_HIGHCOLOR_ON
@@ -182,7 +182,7 @@ Material:
     - _Mode: 0
     - _Nearest_Distance: 0.5
     - _OUTLINE: 1
-    - _OUTLINE_MODE: 1
+    - _OUTLINE_NORMAL_ATTRIBUTE: 1
     - _Offset_Z: 0.05
     - _Outline_Width: 0.436
     - _RenderQueue: 2000

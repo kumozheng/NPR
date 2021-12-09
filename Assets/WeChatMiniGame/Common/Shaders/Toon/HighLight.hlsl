@@ -5,7 +5,7 @@
     // Specular
     float3 halfVector = normalize(viewDirWS + i.lightDirWS);
     float halfHdotN = 0.5 * dot(halfVector, normalWS) + 0.5; 
-    float specularNoExp = 1.0 - step(halfHdotN,(1.0 - _HighColor_Power));
+    float specularNoExp = 1.0 - step(halfHdotN, (1.0 - _HighColor_Power));
     float specularExp = pow(halfHdotN, exp2(lerp(11, 1, _HighColor_Power)));
     float specular = lerp(specularNoExp, specularExp, _Is_SpecularToHighColor);
     // Mask
@@ -17,4 +17,3 @@
     // color = saturate(color  - tweakHighColorMask) + tweakHiColor;
     // color = saturate(color  - tweakHighColorMask) + highColor;
     color = saturate(color + highColor);
-    // color = float3(specularNoExp,specularNoExp,specularNoExp);

@@ -160,7 +160,7 @@ Material:
     - _Mode: 0
     - _Nearest_Distance: 10
     - _OUTLINE: 0
-    - _OUTLINE_MODE: 0
+    - _OUTLINE_NORMAL_ATTRIBUTE: 0
     - _OcclusionStrength: 1
     - _Offset_Z: 0
     - _Outline_Width: 0.63

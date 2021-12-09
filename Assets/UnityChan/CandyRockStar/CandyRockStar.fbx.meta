@@ -387,10 +387,18 @@ ModelImporter:
     2300002: eye_L_old
     2300004: eye_R_old
     2300006: head_back
+    2300008: BLW_DEF
+    2300010: EL_DEF
+    2300012: EYE_DEF
+    2300014: MTH_DEF
     3300000: eye_base_old
     3300002: eye_L_old
     3300004: eye_R_old
     3300006: head_back
+    3300008: BLW_DEF
+    3300010: EL_DEF
+    3300012: EYE_DEF
+    3300014: MTH_DEF
     4300000: head_back
     4300002: eye_base_old
     4300004: eye_L_old
@@ -536,7 +544,7 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     importVisibility: 0
-    importBlendShapes: 1
+    importBlendShapes: 0
     importCameras: 0
     importLights: 0
     swapUVChannels: 0

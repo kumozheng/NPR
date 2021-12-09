@@ -174,7 +174,6 @@
         float halfLambertWithShadow = halfLambert * saturate(shadowAtten * 0.5 + 0.5 + _TweakSystemShadowsLevel);
 
         #include "./DiffuseToon.hlsl"
-        return float4(color , 1.0);
 
         //=============================================HighColor======================================================================//
     #if defined (EnableHighLight)
@@ -185,6 +184,7 @@
     #if defined (EnableRimLight)
         #include "./RimLight.hlsl"
     #endif
+
         //=============================================Matcap======================================================================//
     #if defined (EnableMatCap)
         #include "./MatCap.hlsl"

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0a3e8484a505c68d44e2dbf1f69ffe, type: 3}
   m_Name: scene
   m_EditorClassIdentifier: 
-  ignoreNonActive: 0
+  ignoreNonActive: 1
   ignoreParticle: 0
   createEffectTemplate: 0

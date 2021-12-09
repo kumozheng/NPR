@@ -309,7 +309,7 @@ namespace WeChat {
             // Outline
             if(material.HasProperty("_OUTLINE")){
                 outLineLightMode = FindProperty ("_OUTLINE", props, false);
-                outLineMode = FindProperty ("_OUTLINE_MODE", props, false);
+                outLineMode = FindProperty ("_OUTLINE_NORMAL_ATTRIBUTE", props, false);
                 outline_Width = FindProperty ("_Outline_Width", props, false);
                 outline_Color = FindProperty ("_Outline_Color", props, false);
                 farthest_Distance = FindProperty ("_Farthest_Distance", props, false);
@@ -535,7 +535,7 @@ namespace WeChat {
             SetKeyword (material, "EnableGradeMap", featherMode.floatValue == 0);
             if(material.HasProperty("_OUTLINE")){
                 SetKeyword (material, "USE_LIGHTING", outLineLightMode.floatValue == 1);
-                SetKeyword (material, "OUTLINE_VERTEX", outLineMode.floatValue == 1);
+                SetKeyword (material, "OUTLINE_NORMAL_IN_COLOR", outLineMode.floatValue == 1);
             }
         }
 
@@ -704,7 +704,7 @@ namespace WeChat {
                 EditorGUI.indentLevel++;
                 EditorGUILayout.Space ();
                 m_MaterialEditor.ShaderProperty (outLineLightMode, "Outline Light Mode");
-                m_MaterialEditor.ShaderProperty (outLineMode, "Outline Mode");
+                m_MaterialEditor.ShaderProperty (outLineMode, "Outline Normal Attribute");
                 m_MaterialEditor.ShaderProperty (outline_Width, "Outline Width");
                 m_MaterialEditor.ShaderProperty (outline_Color, "Outline Color");
                 m_MaterialEditor.ShaderProperty (nearest_Distance, "Nearest Distance");

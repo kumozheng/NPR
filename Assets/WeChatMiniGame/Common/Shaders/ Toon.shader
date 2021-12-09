@@ -77,7 +77,7 @@ Shader "WXBBShader/Toon" {
 
         // Outline
         [KeywordEnum(UNLIT, LIGHTING)] _OUTLINE("OutlineLightMode", Float) = 0
-        [KeywordEnum(NORMAL, VERTEX)] _OUTLINE_MODE("OutlineMode", Float) = 0
+        [KeywordEnum(NORMAL, COLOR)] _OUTLINE_NORMAL_ATTRIBUTE("OutlineMode", Float) = 0
         _Outline_Width ("Outline_Width", Range(0, 2) ) = 0
         _Outline_Color ("Outline_Color", Color) = (0.5, 0.5, 0.5, 1)
         _Nearest_Distance ("Nearest_Distance", Float ) = 0.5
@@ -127,7 +127,7 @@ Shader "WXBBShader/Toon" {
             #include "Lighting.cginc"
             #pragma target 3.0
             #pragma shader_feature USE_LIGHTING
-            #pragma shader_feature OUTLINE_VERTEX
+            #pragma shader_feature OUTLINE_NORMAL_IN_COLOR
 
             #include "./Toon/outline.hlsl"
 

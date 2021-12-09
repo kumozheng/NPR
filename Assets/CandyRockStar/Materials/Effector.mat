@@ -135,7 +135,7 @@ Material:
     - _Mode: 0
     - _Nearest_Distance: 0.5
     - _OUTLINE: 1
-    - _OUTLINE_MODE: 0
+    - _OUTLINE_NORMAL_ATTRIBUTE: 0
     - _Offset_Z: 0.1
     - _Outline_Width: 0.409
     - _RenderQueue: 2000

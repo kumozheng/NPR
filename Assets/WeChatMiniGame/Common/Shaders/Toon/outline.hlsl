@@ -12,6 +12,7 @@
     struct VertexInput {
         float4 vertex : POSITION;
         float3 normal : NORMAL;
+        float4 color : COLOR;
         float2 texcoord : TEXCOORD0;
     };
     
@@ -32,17 +33,25 @@
         float4 nearUpperRight = mul(unity_CameraInvProjection, float4(1, 1, UNITY_NEAR_CLIP_VALUE, _ProjectionParams.y));
         float aspect = abs(nearUpperRight.y / nearUpperRight.x);
 
-        #if defined(OUTLINE_VERTEX)
-            outlineWidth = outlineWidth * 2.0;
-            float3 expandDirection = normalize(v.vertex);
-            expandDirection.x *= aspect;
-            o.pos = UnityObjectToClipPos(float4(v.vertex.xyz + expandDirection * outlineWidth, 1));
+        #if defined(OUTLINE_NORMAL_IN_COLOR)
+            // outlineWidth = outlineWidth * 2.0;
+            // float3 expandDirection = normalize(v.vertex);
+            // expandDirection.x *= aspect;
+            // o.pos = UnityObjectToClipPos(float4(v.vertex.xyz + expandDirection * outlineWidth, 1));
+            float3 normalMS = v.color.xyz;
         #else
-            float3 normalVS = mul((float3x3)UNITY_MATRIX_IT_MV, v.normal.xyz);
-            float3 normalCS = normalize(TransformViewToProjection(normalVS.xyz)) * posCS.w;
-            normalCS.x *= aspect;
-            o.pos = float4(posCS.xy + outlineWidth * normalCS.xy, posCS.zw);
+            // float3 normalVS = mul((float3x3)UNITY_MATRIX_IT_MV, v.normal.xyz);
+            // float3 normalCS = normalize(TransformViewToProjection(normalVS.xyz)) * posCS.w;
+            // normalCS.x *= aspect;
+            // o.pos = float4(posCS.xy + outlineWidth * normalCS.xy, posCS.zw);
+            float3 normalMS = v.normal.xyz;
         #endif
+
+        
+        float3 normalVS = normalize(mul((float3x3)UNITY_MATRIX_IT_MV, normalMS.xyz));
+        float3 normalCS = normalize(TransformViewToProjection(normalVS.xyz)) * posCS.w;
+        normalCS.x *= aspect;
+        o.pos = float4(posCS.xy + outlineWidth * normalCS.xy, posCS.zw);
 
         float offset_Z = _Offset_Z * -0.01;
         float4 cameraPosCS = mul(UNITY_MATRIX_VP, float4(_WorldSpaceCameraPos.xyz, 1));

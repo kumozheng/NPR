@@ -190,7 +190,7 @@ Material:
     - _Mode: 2
     - _Nearest_Distance: 0.1
     - _OUTLINE: 0
-    - _OUTLINE_MODE: 0
+    - _OUTLINE_NORMAL_ATTRIBUTE: 0
     - _Offset_Z: 0.3
     - _Outline_Width: 0.119
     - _RenderQueue: 2000
@@ -211,6 +211,7 @@ Material:
     - _Tweak_HighColorMaskLevel: -0.515
     - _Tweak_LightDirection_MaskLevel: 0.176
     - _Tweak_MatCapUV: 0.236
+    - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: -0.88
     - _Tweak_ShadingGradeMapLevel: 0
     - _Tweak_SystemShadowsLevel: 0
