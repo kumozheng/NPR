@@ -39,7 +39,7 @@ Shader "WXBBShader/Toon" {
         _HighColor ("HighColor", Color) = (0,0,0,1)
         _HighColor_Tex ("HighColorMap", 2D) = "white" {}
         _HighColor_Power ("HighColor_Power", Range(0, 1)) = 0
-        _Is_SpecularToHighColor ("_Is_SpecularToHighColor", Range(0, 1)) = 0
+        [MaterialToggle] _Is_SpecularToHighColor ("_Is_SpecularToHighColor", Range(0, 1)) = 0
         _HighColorMask ("_HighColorMask", 2D) = "white" {}
         _Tweak_HighColorMaskLevel ("Tweak_HighColorMaskLevel", Range(-1, 1)) = 0
         _TweakHighColorOnShadow ("TweakHighColorOnShadow", Range(0, 1)) = 0
@@ -72,8 +72,6 @@ Shader "WXBBShader/Toon" {
         _TweakMatCapOnShadow ("TweakMatCapOnShadow", Range(0, 1)) = 0
         _MatCapMask ("MatCapTex", 2D) = "black" {}
         _Tweak_MatcapMaskLevel ("Tweak_MatcapMaskLevel", Range(-1, 1)) = 0
-
-        
 
         // Outline
         [KeywordEnum(UNLIT, LIGHTING)] _OUTLINE("OutlineLightMode", Float) = 0

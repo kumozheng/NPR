@@ -18,9 +18,29 @@
     
     struct VertexOutput {
         float4 pos : SV_POSITION;
-        float2 uv : TEXCOORD0;
+        float2 uv : TEXCOORD0; 
+        float3 color : TEXCOORD1;
 
     };
+
+    float3x3 Adjugate(float3x3 m){
+        return float3x3(
+            (m[1][1] * m[2][2] - m[2][1] * m[1][2]),
+            (m[0][2] * m[2][1] - m[0][1] * m[2][2]),
+            (m[0][1] * m[1][2] - m[0][2] * m[1][1]),
+            (m[1][2] * m[2][0] - m[1][0] * m[2][2]),
+            (m[0][0] * m[2][2] - m[0][2] * m[2][0]),
+            (m[1][0] * m[0][2] - m[0][0] * m[1][2]),
+            (m[1][0] * m[2][1] - m[2][0] * m[1][1]),
+            (m[2][0] * m[0][1] - m[0][0] * m[2][1]),
+            (m[0][0] * m[1][1] - m[1][0] * m[0][1])
+        );
+    }
+
+    float3 CalNormalVS(float3 normalOS){
+        float3x3 matrix_at_mv = transpose(Adjugate(UNITY_MATRIX_MV));
+        return normalize(mul((float3x3)matrix_at_mv, normalOS));
+    }
 
     VertexOutput vert (VertexInput v) {
         VertexOutput o = (VertexOutput)0;
@@ -34,21 +54,14 @@
         float aspect = abs(nearUpperRight.y / nearUpperRight.x);
 
         #if defined(OUTLINE_NORMAL_IN_COLOR)
-            // outlineWidth = outlineWidth * 2.0;
-            // float3 expandDirection = normalize(v.vertex);
-            // expandDirection.x *= aspect;
-            // o.pos = UnityObjectToClipPos(float4(v.vertex.xyz + expandDirection * outlineWidth, 1));
-            float3 normalMS = v.color.xyz;
-        #else
-            // float3 normalVS = mul((float3x3)UNITY_MATRIX_IT_MV, v.normal.xyz);
-            // float3 normalCS = normalize(TransformViewToProjection(normalVS.xyz)) * posCS.w;
-            // normalCS.x *= aspect;
-            // o.pos = float4(posCS.xy + outlineWidth * normalCS.xy, posCS.zw);
-            float3 normalMS = v.normal.xyz;
-        #endif
+            float3 normalOS = v.color.xyz;
 
+        #else
+            float3 normalOS = v.normal.xyz;
+        #endif
         
-        float3 normalVS = normalize(mul((float3x3)UNITY_MATRIX_IT_MV, normalMS.xyz));
+        // float3 normalVS = CalNormalVS(normalOS.xyz);// normalize(mul((float3x3)UNITY_MATRIX_IT_MV, normalOS.xyz));
+        float3 normalVS = normalize(mul((float3x3)UNITY_MATRIX_IT_MV, normalOS.xyz));
         float3 normalCS = normalize(TransformViewToProjection(normalVS.xyz)) * posCS.w;
         normalCS.x *= aspect;
         o.pos = float4(posCS.xy + outlineWidth * normalCS.xy, posCS.zw);
@@ -56,6 +69,7 @@
         float offset_Z = _Offset_Z * -0.01;
         float4 cameraPosCS = mul(UNITY_MATRIX_VP, float4(_WorldSpaceCameraPos.xyz, 1));
         o.pos.z = o.pos.z + offset_Z * cameraPosCS.z;
+        o.color = normalCS;
         return o;
     }
     

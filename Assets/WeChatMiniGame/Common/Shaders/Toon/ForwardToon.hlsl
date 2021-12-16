@@ -195,15 +195,16 @@
         #include "./AngleRing.hlsl"
     #endif
 
-        //=============================================Emission======================================================================//
-        float3 emission = tex2D(_EmissiveTex, i.uv).rgb * _EmissiveColor.rgb;
-
         //=============================================GI============================================================================//
         float3 bakedGI = ShadeSH9(float4(normalWS, 1));
-        float envIntensity = clamp(0.299*bakedGI.r + 0.587*bakedGI.g + 0.114*bakedGI.b, 0, 1);
-        
-        //=============================================Final Composition=============================================================//
-        color = saturate(color) + (bakedGI * envIntensity * _GI_Intensity * smoothstep(1, 0, envIntensity / 2)) + emission;
+        // float envIntensity = clamp(0.299*bakedGI.r + 0.587*bakedGI.g + 0.114*bakedGI.b, 0, 1);
+        // color = saturate(color) + (bakedGI * envIntensity * _GI_Intensity * smoothstep(1, 0, envIntensity / 2));
+
+        color = color + shadeColorLayer1 * bakedGI;
+
+        //=============================================Emission======================================================================//
+        float3 emission = tex2D(_EmissiveTex, i.uv).rgb * _EmissiveColor.rgb;
+        color = color + emission;
 
         fixed4 finalColor = fixed4(color , alpha);
         
